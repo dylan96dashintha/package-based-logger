@@ -29,6 +29,7 @@ func NewProduct(log log.Logger, logConf config.LogConfig) (productObj Product, e
 	if err != nil {
 		return productObj, err
 	}
+	logObj = logObj.With().Str("prefix", "Product").Logger()
 	prd := prd{
 		logger: logObj,
 		list:   make(map[int64]string),
