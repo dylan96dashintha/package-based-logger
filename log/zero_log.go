@@ -1,7 +1,6 @@
 package log
 
 import (
-	"errors"
 	"github.com/package-based-logger/config"
 	logger "github.com/rs/zerolog"
 	"os"
@@ -37,5 +36,10 @@ func (l *loggerObj) GetPackageBasedLogger(packageName string,
 		}
 	}
 
-	return lg, errors.New("package based level is not set")
+	level, err := logger.ParseLevel(logConf.Level)
+	if err != nil {
+		return lg, err
+	}
+	lg = logger.New(os.Stdout).Level(level).With().Timestamp().Logger()
+	return lg, nil
 }
