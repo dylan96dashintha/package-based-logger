@@ -1,0 +1,8 @@
+level: error
+package:
+  - name: cart
+    level: info
+
+  - name: product
+    level: info
+
