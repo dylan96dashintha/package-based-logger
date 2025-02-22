@@ -22,6 +22,8 @@ func (l *loggerObj) GetLogger(logConf config.LogConfig) (lg logger.Logger, err e
 	return log, nil
 }
 
+// GetPackageBasedLogger set a package specific log level
+// if the package related log levels are not defined, global log level is keeps as the level.
 func (l *loggerObj) GetPackageBasedLogger(packageName string,
 	logConf config.LogConfig) (lg logger.Logger, err error) {
 	for _, pkg := range logConf.Package {
